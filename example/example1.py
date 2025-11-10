@@ -1,4 +1,5 @@
-import math
+from math import hypot
+
 
 class Vector2D:
     def __init__(self, x, y):
@@ -6,10 +7,10 @@ class Vector2D:
         self.y = y
 
     def __repr__(self):
-        return 'Vector2D({}, {})'.format(self.x, self.y)
+        return "Vector2D({}, {})".format(self.x, self.y)
 
     def __str__(self):
-        return '({}, {})'.format(self.x, self.y)
+        return "({}, {})".format(self.x, self.y)
 
     def __add__(self, other):
         return Vector2D(self.x + other.x, self.y + other.y)
@@ -28,26 +29,26 @@ class Vector2D:
         return self
 
     def __abs__(self):
-        return math.hypot(self.x, self.y)
+        return hypot(self.x, self.y)
 
     def __bool__(self):
         return self.x != 0 or self.y != 0
-    
-    def __neg__(self):
-        return Vector2D(-self.x,-self.y)
-    
 
-if __name__=='__main__':
-    x=Vector2D(3,4)
+    def __neg__(self):
+        return Vector2D(-self.x, -self.y)
+
+
+if __name__ == "__main__":
+    x = Vector2D(3, 4)
     print(repr(x))
     print(x)
     print(abs(x))
-    y=Vector2D(5,6)
-    print(repr(x+y))
-    print(repr(x-y))
+    y = Vector2D(5, 6)
+    print(repr(x + y))
+    print(repr(x - y))
     print(repr(-x))
     print(repr(x))
     print(bool(x))
-    z=Vector2D(0,0)
+    z = Vector2D(0, 0)
     print(bool(z))
     print(repr(-z))

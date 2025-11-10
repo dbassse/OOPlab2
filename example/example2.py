@@ -1,14 +1,11 @@
-import math
-
 class Rational:
-    
     def __init__(self, a=0, b=1):
         a = int(a)
         b = int(b)
-        
+
         if b == 0:
             raise ValueError("Illegal value of the denominator")
-            
+
         self.__numerator = a
         self.__denominator = b
         self.__reduce()
@@ -23,15 +20,16 @@ class Rational:
                 return gcd(a % b, b)
             else:
                 return gcd(a, b % a)
-                
+
         sign = 1
-        if (self.__numerator > 0 and self.__denominator < 0) or \
-           (self.__numerator < 0 and self.__denominator > 0):
+        if (self.__numerator > 0 and self.__denominator < 0) or (
+            self.__numerator < 0 and self.__denominator > 0
+        ):
             sign = -1
-            
+
         a, b = abs(self.__numerator), abs(self.__denominator)
         c = gcd(a, b)
-        
+
         self.__numerator = sign * (a // c)
         self.__denominator = b // c
 
@@ -56,13 +54,13 @@ class Rational:
         value = int(value)
         if value == 0:
             raise ValueError("Illegal value of the denominator")
-            
+
         self.__denominator = value
         self.__reduce()
 
     def __str__(self):
         return f"{self.__numerator} / {self.__denominator}"
-        
+
     def __repr__(self):
         return self.__str__()
 
@@ -74,10 +72,9 @@ class Rational:
 
     def __iadd__(self, rhs):
         if isinstance(rhs, Rational):
-            a = self.numerator * rhs.denominator + \
-                self.denominator * rhs.numerator
+            a = self.numerator * rhs.denominator + self.denominator * rhs.numerator
             b = self.denominator * rhs.denominator
-            
+
             self.__numerator, self.__denominator = a, b
             self.__reduce()
             return self
@@ -89,10 +86,9 @@ class Rational:
 
     def __isub__(self, rhs):
         if isinstance(rhs, Rational):
-            a = self.numerator * rhs.denominator - \
-                self.denominator * rhs.numerator
+            a = self.numerator * rhs.denominator - self.denominator * rhs.numerator
             b = self.denominator * rhs.denominator
-            
+
             self.__numerator, self.__denominator = a, b
             self.__reduce()
             return self
@@ -106,7 +102,7 @@ class Rational:
         if isinstance(rhs, Rational):
             a = self.numerator * rhs.numerator
             b = self.denominator * rhs.denominator
-            
+
             self.__numerator, self.__denominator = a, b
             self.__reduce()
             return self
@@ -120,10 +116,10 @@ class Rational:
         if isinstance(rhs, Rational):
             a = self.numerator * rhs.denominator
             b = self.denominator * rhs.numerator
-            
+
             if b == 0:
                 raise ValueError("Illegal value of the denominator")
-                
+
             self.__numerator, self.__denominator = a, b
             self.__reduce()
             return self
@@ -135,8 +131,9 @@ class Rational:
 
     def __eq__(self, rhs):
         if isinstance(rhs, Rational):
-            return (self.numerator == rhs.numerator) and \
-                   (self.denominator == rhs.denominator)
+            return (self.numerator == rhs.numerator) and (
+                self.denominator == rhs.denominator
+            )
         else:
             return False
 
@@ -170,18 +167,19 @@ class Rational:
         else:
             return False
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     r1 = Rational(3, 4)
     print(f"r1 = {r1}")
-    
+
     r2 = Rational(5, 6)
     print(f"r2 = {r2}")
-    
+
     print(f"r1 + r2 = {r1 + r2}")
     print(f"r1 - r2 = {r1 - r2}")
     print(f"r1 * r2 = {r1 * r2}")
     print(f"r1 / r2 = {r1 / r2}")
-    
+
     print(f"r1 == r2: {r1 == r2}")
     print(f"r1 != r2: {r1 != r2}")
     print(f"r1 > r2: {r1 > r2}")
